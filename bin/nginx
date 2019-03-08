@@ -1,0 +1,36 @@
+#!/bin/sh
+
+nginx=/usr/sbin/nginx
+[ -x "$nginx" ] || exit 1
+
+cd -- "$(dirname "$0")/.." || exit 2
+
+case "$1" in
+	(-V)
+		"$nginx" -V 2>&1 | sed -e 's, -,\n-,g'
+		exit $?
+	;;
+esac
+
+#set -- --prefix=$(pwd) "$@"
+#set -- --conf-path=./etc/nginx2/nginx.conf "$@"
+#set -- --http-log-path=./var/log/nginx2/access.log "$@"
+#set -- --error-log-path=./var/log/nginx2/error.log "$@"
+#set -- --lock-path=./var/lock/nginx.lock "$@"
+#set -- --pid-path=./run/nginx.pid "$@"
+
+#set -- --modules-path=/usr/lib/nginx/modules "$@"
+#set -- --http-client-body-temp-path=/var/lib/nginx/body "$@"
+#set -- --http-fastcgi-temp-path=/var/lib/nginx/fastcgi "$@"
+#set -- --http-proxy-temp-path=/var/lib/nginx/proxy "$@"
+#set -- --http-scgi-temp-path=/var/lib/nginx/scgi "$@"
+#set -- --http-uwsgi-temp-path=/var/lib/nginx/uwsgi "$@"
+
+
+set -- -p "$(pwd)" "$@"
+set -- -g "error_log $(pwd)/var/log/nginx/error.log;" "$@"
+set -- -c etc/nginx/nginx.conf "$@"
+
+
+"$nginx" "$@" &&
+lsof 2>&- -p $(cat ./run/nginx.pid )

@@ -1,0 +1,4 @@
+2019/09/12 13:43:28 [error] 15698#15698: *1 "/home/gac/nginx-userspace/./var/www/html/private/index.html" is not found (2: No such file or directory), client: ::1, server: _:12021, request: "GET /private/ HTTP/1.1", host: "localhost:12021"
+2019/09/12 13:43:28 [error] 15698#15698: *1 open() "/home/gac/nginx-userspace/./var/www/html/favicon.ico" failed (2: No such file or directory), client: ::1, server: _:12021, request: "GET /favicon.ico HTTP/1.1", host: "localhost:12021"
+2019/09/12 13:43:28 [error] 15698#15698: *1 open() "/home/gac/nginx-userspace/./var/www/html/favicon.ico" failed (2: No such file or directory), client: ::1, server: _:12021, request: "GET /favicon.ico HTTP/1.1", host: "localhost:12021"
+2019/09/12 13:46:41 [error] 17998#17998: *2 open() "/home/gac/nginx-userspace/./var/www/html/private" failed (2: No such file or directory), client: ::1, server: _:12021, request: "GET /private HTTP/1.1", host: "localhost:12021"

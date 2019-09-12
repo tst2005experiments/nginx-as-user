@@ -1,0 +1,7 @@
+::1 - - [12/Sep/2019:13:43:28 +0200] "GET /private/ HTTP/1.1" 404 143 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"
+::1 - - [12/Sep/2019:13:43:28 +0200] "GET /favicon.ico HTTP/1.1" 404 143 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"
+::1 - - [12/Sep/2019:13:43:28 +0200] "GET /favicon.ico HTTP/1.1" 404 143 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"
+::1 - - [12/Sep/2019:13:44:23 +0200] "GET /W/ HTTP/1.1" 200 670 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"
+::1 - - [12/Sep/2019:13:44:37 +0200] "GET /work/intdoc/documents/sysadmin HTTP/1.1" 200 115 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"
+::1 - - [12/Sep/2019:13:46:41 +0200] "GET /private HTTP/1.1" 404 169 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"
+::1 - - [12/Sep/2019:13:46:47 +0200] "GET /echo HTTP/1.1" 200 27 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"

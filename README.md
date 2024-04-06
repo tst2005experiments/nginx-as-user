@@ -4,9 +4,19 @@ $ sudo -i
 # git clone https://github.com/tst2005/chkconfig.sh
 # ./chkconfig.sh/bin/chkconfig nginx off
 
-$ git clone https://github.com/tst2005/nginx-as-user
+$ git clone https://github.com/tst2005experiments/nginx-as-user
 $ cd nginx-as-user
-( config in ./etc/site-available/*.conf and symlink in ./etc/site-enabled/ )
+$ cd ./etc/site-enabled/
+$ ln -s ../site-available/http12021.conf http12021.conf
+$ cd -
+
+$ cd deps
+$ ./setup.sh
+
+$ cd etc/nginx/app-enabled
+$ ln -s ../app-available/api.conf api.conf
+$ ln -s ../app-available/echo.conf echo.conf
+
 $ ./bin/nginx start
 $ ./bin/nginx status
 $ ./bin/nginx stop

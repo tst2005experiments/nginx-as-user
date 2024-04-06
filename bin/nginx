@@ -12,7 +12,9 @@ case "$1" in
 	;;
 esac
 
-action="$1";shift
+if [ $# -gt 0 ]; then
+	action="$1";shift
+fi
 
 #set -- --prefix=$(pwd) "$@"
 #set -- --conf-path=./etc/nginx2/nginx.conf "$@"
@@ -29,24 +31,30 @@ action="$1";shift
 #set -- --http-uwsgi-temp-path=/var/lib/nginx/uwsgi "$@"
 
 set -- -p "$(pwd)" "$@"
-set -- -g "error_log $(pwd)/var/log/nginx/error.log;" "$@"
+set -- -g "error_log $(pwd)/var/log/nginx/error.log warn;" "$@"
 set -- -c etc/nginx/nginx.conf "$@"
 
 start() {
-	"$nginx" "$@" &&
-	ps -f -p "$(cat run/nginx.pid)"
+	"$nginx" 2>&- "$@"
+	#ps -f -p "$(cat run/nginx.pid)"
 }
 stop() {
-	"$nginx" "$@" -s stop
+	"$nginx" 2>&- "$@" -s stop
+}
+restart() {
+	stop "$@"
+	start "$@"
 }
 reload() {
 	"$nginx" "$@" -s reload
 }
 status() {
 	if [ -r "run/nginx.pid" ] && [ -s "run/nginx.pid" ]; then
-		echo "pidfile exists"
-		echo "run/nginx.pid=$(cat run/nginx.pid)"
-		info | grep -v 'type=STREAM'
+		#echo "pidfile exists"
+		#echo "run/nginx.pid=$(cat run/nginx.pid)"
+		ps -f -p "$(cat run/nginx.pid)"
+		echo >&2 "For more info, try $0 info"
+		#info | grep -v 'type=STREAM'
 
 	else
 		echo "nginx seems stopped (no such pidfile)"
@@ -56,8 +64,11 @@ info() {
 	[ -r "run/nginx.pid" ] && [ -s "run/nginx.pid" ] &&
 	lsof 2>&- -p "$(cat ./run/nginx.pid)"
 }
+dumpconfig() {
+	 "$nginx" "$@" -T
+}
 
 case "$action" in
-	(start|stop|reload|status|info) "$action" "$@" ;;
-	(*) echo >&2 "Usage: $0 start|stop|reload"; exit 1;;
+	(start|stop|reload|restart|status|info|dumpconfig) "$action" "$@" ;;
+	(*) echo >&2 "Usage: $0 start|stop|restart|reload|status|info"; exit 1;;
 esac

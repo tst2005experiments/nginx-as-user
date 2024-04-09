@@ -23,3 +23,9 @@ $ ./bin/nginx stop
 ```
 
 
+
+# Known bugs
+
+The `./bin/nginx reload` try to access the system logfile.
+for now this unwanted behavior seems unfixable.
+You can use `./bin/nginx restart` instead or ignore the ugly error lines.
